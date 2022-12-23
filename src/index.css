@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  outline: none;
+}
+
+a:link, a:visited {
+  color: none;
+}
+
+body {
+  font-size: 14px;
+  background-color: #f0f2f6;
+  font-family: 'Oswald', sans-serif;
+  color: #000000;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.link {
+  color: #000000;
+  font-size: 25px;
+}
+
+.chosed {
+background-color: #000000;
+color: #fff;
+transition: background 0.3s ease-in-out;
+}
+
+.count {
+  display: none;
+}
+
+.burger {
+  transform: translateX(-130%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.burger-active {
+  transform: translateX(0);
+  transition: transform 0.5s ease-in-out;
+}
+
