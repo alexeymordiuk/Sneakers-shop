@@ -13,11 +13,13 @@ import storage from "redux-persist/lib/storage";
 import sneakers from "./slices/sneakersSlice";
 import cart from "./slices/cartSlice";
 import like from "./slices/likeSlice";
+import filter from "./slices/filterSlice"
 
 const rootReducer = combineReducers({
   sneakers,
   cart,
   like,
+  filter
 });
 
 const persistConfig = {

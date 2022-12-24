@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCart } from "../redux/slices/cartSlice";
 import CartItem from "../components/cart/CartItem";
 import { cartItems } from "../types/cartTypes";
-import { Container } from "../components/Container";
 import { Wraper } from "../components/sneakers/SneakersDate";
 import CartEmpty from "../components/cart/CartEmpty";
 import { clearItems } from "../redux/slices/cartSlice";
@@ -16,17 +15,18 @@ const Inner = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 10px;
-  margin: 15px 0;
+  margin-top: 15px;
 
   @media (min-width: 750px) {
     flex-direction: row;
   }
 `;
 
-const Wrraper = styled(Wraper)`
+export const Wrraper = styled(Wraper)`
   padding-bottom: 0;
   overflow: auto;
   height: calc(100vh - 50px);
+  padding: 10px 0 15px 0;
   &::-webkit-scrollbar {
     background-color: #f0f2f6;
     width: 7px;
@@ -58,7 +58,6 @@ const Orders: React.FC = () => {
   }
 
   return (
-    <Container>
       <Info>
         <Inner>
           <Column>
@@ -76,7 +75,6 @@ const Orders: React.FC = () => {
           ))}
         </Wrraper>
       </Info>
-    </Container>
   );
 };
 

@@ -55,6 +55,7 @@ transition: color 0.3s ease-in-out;
 const BurgerBtn = styled.button`
   cursor: pointer;
   border: none;
+  background: none;
 `
 
 

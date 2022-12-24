@@ -4,10 +4,13 @@ import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FaAngleLeft } from "react-icons/fa";
-import { Container } from "../components/Container";
 import AddToCart from "../components/cart/AddToCart";
 import AddToLiked from "../components/liked/AddToLiked";
 import Spinner from "../components/utils/Spinner";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
 
 export const Info = styled.div`
   height: calc(100vh - 40px);
@@ -33,11 +36,22 @@ const LeftIcon = styled(FaAngleLeft)`
 
 const Picture = styled.img`
   width: 400px;
+  height: 200px;
+  object-fit: contain;
   margin: 0 auto;
+  border-radius: 8px;
+  cursor: pointer;
+
+  @media (min-width: 390px) {
+    object-fit: contain;
+  }
+
+  @media (min-width: 750px) {
+    height: auto;
+  }
 `;
 
 const Content = styled.div`
-  padding: 0 20px;
   text-align: center;
 
   @media (min-width: 750px) {
@@ -99,11 +113,21 @@ const About = styled.div`
   @media (min-width: 750px) {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 15px;
   }
 `;
+
+const Column = styled.div`
+display: flex;
+align-items: center;
+flex-direction: column;
+gap: 15px;
+margin-bottom: 15px;
+`
+
+const Gallery = styled(Swiper)`
+width: 50%;
+`
 
 const SneakersDetailes: React.FC = () => {
   const { code } = useParams();
@@ -116,6 +140,7 @@ const SneakersDetailes: React.FC = () => {
     id: string;
     description: string;
     count: number;
+    gallery: string[];
   }>();
 
   useEffect(() => {
@@ -130,58 +155,60 @@ const SneakersDetailes: React.FC = () => {
   }
 
   return (
-    <Container>
-      <Info>
-        <Detailes>
-          <Link to="/">
-            <LeftIcon />
-          </Link>
-          <Title>Detailes</Title>
-          <AddToLiked
+    <Info>
+      <Detailes>
+        <Link to="/">
+          <LeftIcon />
+        </Link>
+        <Title>Detailes</Title>
+        <AddToLiked
+          id={date.id}
+          img={date.img}
+          title={date.title}
+          price={date.price}
+          count={date.count}
+        />
+      </Detailes>
+      <About>
+        <Gallery pagination={true} modules={[Pagination]}>
+          {date.gallery.map((images, i) => (
+            <SwiperSlide key={i}>
+              <Picture src={images} alt="img" />
+            </SwiperSlide>
+          ))}
+        </Gallery>
+        <Column>
+          <Name>{date.title}</Name>
+          <Description>{date.description}</Description>
+        </Column>
+      </About>
+      <Content>
+        <Sizes>
+          <Description>Sizes:</Description>
+          {date.sizes.map((size, i) => (
+            <Size
+              key={i}
+              onClick={() => setActiveSizes(i)}
+              className={activeSizes === i ? "chosed" : ""}
+            >
+              {size}
+            </Size>
+          ))}
+        </Sizes>
+        <Add>
+          <Priced>{date.price} Uah</Priced>
+          <AddToCart
             id={date.id}
             img={date.img}
-            title={date.title}
             price={date.price}
+            title={date.title}
+            sizes={date.sizes}
             count={date.count}
+            activeSizes={activeSizes}
           />
-        </Detailes>
-        <About>
-          <div>
-            <Picture src={date.img} alt="sneakers" />
-            <Name>{date.title}</Name>
-          </div>
-          <Inner>
-            <Description>Sizes:</Description>
-            <Sizes>
-              {date.sizes.map((size, i) => (
-                <Size
-                  key={i}
-                  onClick={() => setActiveSizes(i)}
-                  className={activeSizes === i ? "chosed" : ""}
-                >
-                  {size}
-                </Size>
-              ))}
-            </Sizes>
-          </Inner>
-        </About>
-        <Content>
-          <Description>{date.description}</Description>
-          <Add>
-            <Priced>{date.price} Uah</Priced>
-            <AddToCart
-              id={date.id}
-              img={date.img}
-              price={date.price}
-              title={date.title}
-              sizes={date.sizes}
-              count={date.count}
-              activeSizes={activeSizes}
-            />
-          </Add>
-        </Content>
-      </Info>
-    </Container>
+        </Add>
+      </Content>
+    </Info>
   );
 };
 

@@ -5,7 +5,7 @@ import { FullHeart, Like } from "./AddToLiked";
 import styled from "styled-components";
 import { Priced } from "../../pages/SneakersDetailes";
 
-interface LikedItems {
+interface favouriteItems {
   img: string;
   title: string;
   id: string;
@@ -29,7 +29,7 @@ const Img = styled.img`
   border-radius: 8px;
 `;
 
-const LikedItems: React.FC<LikedItems> = ({ id, img, title }) => {
+const LikedItems: React.FC<favouriteItems> = ({ id, img, title }) => {
   const dispatch = useDispatch();
 
   const deleteLiked = () => {

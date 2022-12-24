@@ -3,6 +3,8 @@ import { Sneakers } from "../../types/sneakersTypes";
 import styled from "styled-components";
 import { BsCart2 } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { useInView } from "react-intersection-observer";
+import Spinner from "../utils/Spinner";
 
 const Card = styled.div``;
 
@@ -72,10 +74,28 @@ export const CartIcon = styled(BsCart2)`
   color: #fff;
 `;
 
+const Sekeleton = styled.div`
+  height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const SneakersItems: React.FC<{ items: Sneakers }> = ({ items }) => {
+  const { ref, inView } = useInView({
+    threshold: 0.9,
+    triggerOnce: true,
+  });
+
   return (
-    <Card>
-      <Img src={items.img} alt="sneakers" />
+    <Card ref={ref}>
+      {inView ? (
+        <Img src={items.img} alt="sneakers" />
+      ) : (
+        <Sekeleton>
+          <Spinner />
+        </Sekeleton>
+      )}
       <Content>
         <Code>{items.code}</Code>
         <Title>{items.title}</Title>
