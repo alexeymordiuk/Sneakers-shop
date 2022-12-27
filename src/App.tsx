@@ -4,8 +4,10 @@ import Home from "./pages/Home";
 import Liked from "./pages/Liked";
 import Messages from "./pages/Messages";
 import Orders from "./pages/Orders";
+import OrdersLIst from "./pages/OrdersLIst";
 import SneakersDetailes from "./pages/SneakersDetailes";
 import User from "./pages/User";
+import { UserLogin } from "./pages/UserLogin";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path="detailes/:code" element={<SneakersDetailes />} />
           <Route path="user" element={<User />} />
           <Route path="bell" element={<Messages />} />
+          <Route path="list" element={<OrdersLIst />} />
+          <Route path="user/login" element={<UserLogin />} />
         </Route>
       </Routes>
     </>

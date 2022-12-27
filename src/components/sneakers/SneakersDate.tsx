@@ -8,25 +8,13 @@ import {
 } from "../../redux/slices/sneakersFetch";
 import SneakersItems from "./SneakersItems";
 import { Sneakers } from "../../types/sneakersTypes";
-import styled from "styled-components";
 import Skeleton from "../utils/Skeleton";
 import { selectFilter, setFilters } from "../../redux/slices/filterSlice";
 import qs from "qs";
 import { listSort } from "../Filters";
 import { useNavigate } from "react-router-dom";
+import { Wraper } from "../utils/Wraper";
 
-export const Wraper = styled.section`
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px 0;
-  padding-bottom: 70px;
-
-  @media (min-width: 750px) {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px 25px;
-  }
-`;
 
 const SneakersDate: React.FC = () => {
   const navigate = useNavigate();

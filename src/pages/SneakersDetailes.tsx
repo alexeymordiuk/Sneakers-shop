@@ -11,6 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
+import { GET_DETAILES } from "../env";
 
 export const Info = styled.div`
   height: calc(100vh - 40px);
@@ -18,6 +19,7 @@ export const Info = styled.div`
   justify-content: center;
   flex-direction: column;
 `;
+
 const Title = styled.h2`
   font-size: 22px;
 `;
@@ -93,9 +95,10 @@ const Description = styled.p`
   line-height: 22px;
   color: #aaaaaa;
   max-width: 300px;
+  margin-right: auto;
 
   @media (min-width: 750px) {
-    max-width: 500px;
+    max-width: 450px;
   }
 `;
 
@@ -145,7 +148,7 @@ const SneakersDetailes: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get(`https://63630b2e66f75177ea3c41dc.mockapi.io/sneakers/${code}`)
+      .get(`${GET_DETAILES}${code}`)
       .then(({ data }) => setIDate(data));
     // eslint-disable-next-line
   }, [code]);

@@ -11,6 +11,12 @@ a:link, a:visited {
   color: none;
 }
 
+input {
+  border: none;
+  background: none;
+}
+
+
 body {
   font-size: 14px;
   background-color: #f0f2f6;
@@ -54,5 +60,9 @@ transition: background 0.3s ease-in-out;
   border-radius: 8px;
   padding: 4px;
   transition: background 0.3s ease-in-out;
+}
+
+.orders {
+  display: none!important;
 }
 

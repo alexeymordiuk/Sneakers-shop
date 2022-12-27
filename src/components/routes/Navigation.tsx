@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { AiOutlineHeart } from "react-icons/ai";
 import { selectLike } from "../../redux/slices/likeSlice";
 import { useSelector } from "react-redux/es/hooks/useSelector";
+import { TbListCheck } from "react-icons/tb";
 
 export const Navigat = styled.nav`
   position: fixed;
@@ -42,6 +43,8 @@ const IconHeart = styled(AiOutlineHeart)`
   position: relative;
 `;
 
+const IconList = styled(TbListCheck)``;
+
 const Navigation: React.FC = () => {
   const { items } = useSelector(selectLike);
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
@@ -69,6 +72,14 @@ const Navigation: React.FC = () => {
         >
           <IconHeart />
           <Count className={`${totalCount ? "" : "count"}`}>{totalCount}</Count>
+        </NavLink>
+        <NavLink
+          to="list"
+          className="link"
+          end
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+        >
+          <IconList />
         </NavLink>
       </Nav>
     </Navigat>

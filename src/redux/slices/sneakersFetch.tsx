@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { GET_SNEAKERS } from "../../env";
 import { Sneakers } from "../../types/sneakersTypes";
 
 export const fetchSneakers = createAsyncThunk<Sneakers[], Record<string, string>>(
@@ -7,7 +8,7 @@ export const fetchSneakers = createAsyncThunk<Sneakers[], Record<string, string>
     async (params) => {
       const {search, sortBy, order} = params;
       const { data } = await axios.get<Sneakers[]>(
-       `https://63630b2e66f75177ea3c41dc.mockapi.io/sneakers?${search}&sortBy=${sortBy}&order=${order}`
+       `${GET_SNEAKERS}${search}&sortBy=${sortBy}&order=${order}`
       );
       return data;
     }

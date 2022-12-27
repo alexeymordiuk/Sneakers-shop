@@ -15,13 +15,14 @@ const Circle = keyframes`
 
 `;
 
-const Loading = styled(ImSpinner2)`
+export const Loading = styled(ImSpinner2)`
   font-size: 80px;
   color: #000000;
   animation-name: ${Circle};
   animation-duration: 1.5s;
   animation-iteration-count: infinite;
 `;
+
 
 const Spinner: React.FC = () => {
   return (
